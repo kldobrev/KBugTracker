@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KBugTracker</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+		<div id="header">
+			<%= link_to image_tag("tracker_logo.jpg"), root_path, id: "app_logo" %>
+			<ul id="main_nav">
+				<li>
+					<a class="main_nav_link" href="#">User</a>
+					<ul class="main_nav_inner">
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Logout</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Projects</a>
+					<ul class="main_nav_inner">
+						<li><a href="#">Assigned</a></li>
+						<li><a href="#">Requests</a></li>
+						<li><a href="#">Search</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Help</a>
+					<ul class="main_nav_inner">
+						<li><a href="#">Guide</a></li>
+						<li><a href="#">Recommendations</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">About</a>
+					<ul class="main_nav_inner">
+						<li><a href="#">Application</a></li>
+						<li><a href="#">Contacts</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<div id="body_cont">
+			<%= yield %>
+		</div>
+		
+		<div id="footer">
+			<p>&copy 2015. Developed by Konstantin Dobrev. All rights reserved. </p>
+		</div>
+	</body>
+
+</html>

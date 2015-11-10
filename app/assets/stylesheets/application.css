@@ -1,0 +1,130 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ 
+
+
+body {
+	background-color: #F3F3F3;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Arial';
+}
+
+#header {
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+	border-bottom: 2px solid #4D4D4D;
+	padding: 2px 20px 0px 6px;
+}
+
+#main_nav {
+	margin: 0px 40px 0px 0px;
+	float: right;
+}
+
+#main_nav > li {
+	display: inline-block;
+	padding: 15px 0px 0px 0px;
+	color: #000000;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#main_nav > li a {
+	padding: 17px 12px 14px 12px;
+	text-decoration: none;
+	color: #000000;
+	font-family: 'Lato';
+	
+}
+
+#main_nav  > li a:hover {
+	color: #FFA347;
+}
+
+.main_nav_inner {
+	position: fixed;
+	visibility: hidden;
+	padding: 0px 0px 0px 0px;
+	border-left: 1px solid #4D4D4D;
+	border-right: 1px solid #4D4D4D;
+	border-bottom: 1px solid #4D4D4D;
+	background-color: #FFFFFF;
+	top: 53px;
+}
+.main_nav_inner > li {
+	display: block;
+	padding: 4px 4px 4px 4px;
+	text-align: left;
+}
+
+.main_nav_inner > li a {
+	padding: 0px 0px 0px 0px;
+	text-transform: none;
+	font-family: 'Arial';
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.main_nav_inner > li a:hover {
+	color: #000000;
+}
+
+
+#body_cont {
+	clear: right;
+	padding: 50px 16px 40px 20px;
+}
+
+
+.app_form  input[type="textfield"] {
+	height: 22px;
+	width: 20%;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.app_form  input[type="textfield"]:focus {
+	background-color: #FFFF7D;
+}
+
+.app_button {
+	
+}
+
+#footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	background-color: #FFFFFF;
+	border-top: 1px solid #4D4D4D;
+}
+
+#footer p {
+	margin: 5px 0px 6px 0px;
+	text-align: center;
+	font-size: 14px;
+}
