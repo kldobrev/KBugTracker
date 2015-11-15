@@ -62,6 +62,13 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 	
+	resources :users
+	
 	# statics
 	root 'statics#index'
+	
+	# users
+	get 'signup' => 'users#new', as: 'signup'
+	
+	
 end
