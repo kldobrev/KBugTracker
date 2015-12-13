@@ -69,6 +69,10 @@ Rails.application.routes.draw do
 	
 	# users
 	get 'signup' => 'users#new', as: 'signup'
+	get 'users/activate/:atk' => 'users#activate', as: 'activate'
+	
+	#sessions
+	get 'login' => 'sessions#new', as: 'login'
 	
 	
 end

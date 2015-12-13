@@ -21,7 +21,7 @@ body {
 	background-color: #F3F3F3;
 	height: 100%;
 	margin: 0px;
-	padding: 0px;
+	padding: 53px 0px 0px 0px;
 	font-family: 'Arial';
 }
 
@@ -92,10 +92,29 @@ body {
 	color: #000000;
 }
 
+#flashes {
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+}
+
+#flashes li {
+	list-style: none;
+}
+
+.fl_err {
+	background-color: #ff8080;
+	border-bottom: 1px solid #e60000;
+}
+
+.fl_success {
+	background-color: #99ff99;
+	border-bottom: 1px solid #00b300;
+}
 
 #body_cont {
 	clear: right;
-	padding: 50px 16px 40px 20px;
+	padding: 10px 16px 40px 20px;
 }
 
 
@@ -156,11 +175,6 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
-
-#login_frm {
-
-}
-
 
 #footer {
 	position: fixed;

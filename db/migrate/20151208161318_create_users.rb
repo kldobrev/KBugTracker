@@ -7,7 +7,9 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :password_digest, null: false
 			t.string :firstname
 			t.string :lastname
-			t.integer :type, null: false
+			t.integer :acctype, null: false
+			t.string :act_code
+			t.string :ch_pass_code
 			
       t.timestamps null: false
     end
