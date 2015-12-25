@@ -8,11 +8,15 @@ class User < ActiveRecord::Base
 	validates :acctype, presence: true, inclusion: [0, 1]
 	
 	def isPublic?
-		self.type == 0
+		self.acctype == 0
 	end
 	
 	def isPrivate?
 		not isPublic?
+	end
+	
+	def isActivated?
+		self.act_code == nil
 	end
 
 end

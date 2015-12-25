@@ -62,6 +62,10 @@ body {
 	color: #FFA347;
 }
 
+#main_nav > li #nav_username {
+	color: #ff0000;
+}
+
 .main_nav_inner {
 	position: fixed;
 	visibility: hidden;
@@ -175,6 +179,7 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
 
 #footer {
 	position: fixed;

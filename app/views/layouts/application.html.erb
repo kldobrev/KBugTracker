@@ -13,11 +13,15 @@
 			<%= link_to image_tag("tracker_logo.jpg"), root_path, id: "app_logo" %>
 			<ul id="main_nav">
 				<li>
-					<a class="main_nav_link" href="#">User</a>
-					<ul class="main_nav_inner">
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Logout</a></li>
-					</ul>
+					<% unless isLogged? %>
+						<%= link_to "Login", login_path %>
+					<% else %>
+						<%= link_to current_user.username, "#", id: "nav_username" %>
+						<ul class="main_nav_inner">
+							<li><a href="#">Profile</a></li>
+							<li><%= link_to "Logout", logout_path, method: "delete" %>
+						</ul>
+						<% end %>
 				</li>
 				<li>
 					<a href="#">Projects</a>

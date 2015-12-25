@@ -65,14 +65,16 @@ Rails.application.routes.draw do
 	resources :users
 	
 	# statics
-	root 'statics#index'
+	root 'sessions#new'
 	
 	# users
 	get 'signup' => 'users#new', as: 'signup'
 	get 'users/activate/:atk' => 'users#activate', as: 'activate'
 	
 	#sessions
-	get 'login' => 'sessions#new', as: 'login'
+	get 'login' => 'sessions#new'
+	post 'login' => 'sessions#create'
+	delete 'logout' => 'sessions#destroy'
 	
 	
 end
