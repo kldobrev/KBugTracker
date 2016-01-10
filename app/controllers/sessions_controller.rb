@@ -5,14 +5,13 @@ class SessionsController < ApplicationController
 	
 	def create
 		@user = User.find_by(username: params[:session][:username])
-		if @user and @user.authenticate(params[:session][:password])
+		if @user && @user.isActivated? && @user.authenticate(params[:session][:password])
 			session[:user_id] = @user.id
+			flash_msgs(0, "Welcome, #{@user.username}.")
 			flash[:status] = 0
-			flash[:msgs] = [ "Welcome, #{@user.username}." ]
 			redirect_to root_path
 		else
-			flash.now[:status] = 1
-			flash.now[:msgs] = ["Wrong username or password."]
+			flash_now_msgs(1, "Wrong username or password.")
 			render 'new'
 		end
 	end

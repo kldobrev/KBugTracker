@@ -70,6 +70,9 @@ Rails.application.routes.draw do
 	# users
 	get 'signup' => 'users#new', as: 'signup'
 	get 'users/activate/:atk' => 'users#activate', as: 'activate'
+	post 'ch_pass_request' => 'users#ch_pass_request'
+	get 'users/edit_pass/:cpt' => 'users#edit_pass', as: 'edit_pass'
+	patch 'users/update_pass/:cpt' => 'users#update_pass'
 	
 	#sessions
 	get 'login' => 'sessions#new'

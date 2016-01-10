@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	<h1>Change password for <%= @user.username %>.</h1>
+
+	<p>You have requested a password change.<br>
+	Please click the link below to proceed or ignore this mail. <br>
+	<%= link_to "Password change facility.", edit_pass_url(cpt: @user.ch_pass_code) %></p>
+</body>
+</html>

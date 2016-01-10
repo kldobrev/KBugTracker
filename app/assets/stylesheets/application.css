@@ -180,6 +180,10 @@ body {
   text-decoration: none;
 }
 
+#ch_pass_req_frm {
+	visibility: hidden;
+}
+
 
 #footer {
 	position: fixed;

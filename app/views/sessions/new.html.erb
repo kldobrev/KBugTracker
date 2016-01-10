@@ -9,8 +9,17 @@
 		<%= frm.password_field :password %> <br>
 		<%= frm.submit "Login", class: "app_button" %>
 	<% end %>
-	<br>
-	<%= link_to "Forgot password?", "#" %>
-	
-	<p>Don't have an account? <%= link_to "Sign up here.", "signup" %></p>
 </div>
+
+<p>Don't have an account? <%= link_to "Sign up here.", "signup" %></p>
+
+<%= link_to "Forgot password?", "#", id: "ch_pass_frm_button" %>
+<br> <br>
+<div id="ch_pass_req_frm">
+	<%= form_tag({ controller: "users", action: "ch_pass_request" }, method: "post", class: "app_form" ) do  %>
+		<%= label_tag "Please enter your email address:" %> <br>
+		<%= text_field_tag :usr_email %>  
+		<%= submit_tag "Request change", class: "app_button" %>
+	<% end %>
+</div>
+	

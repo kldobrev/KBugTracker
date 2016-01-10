@@ -1,0 +1,11 @@
+<h1>Change password for <%= @user.username %>:</h1>
+
+<%= form_for(@user, url: { action: "update_pass" }, html: { class: "app_form" }) do |frm| %>
+	<%= frm.label "Email:" %> <br>
+	<%= frm.text_field :email, value: "" %> <br>
+	<%= frm.label "New password:" %> <br>
+	<%= frm.password_field :password %> <br>
+	<%= frm.label "Repeat new password:" %> <br>
+	<%= frm.password_field :password_confirmation %> <br>
+	<%= frm.submit "Change password", class: "app_button" %>
+<% end %>
