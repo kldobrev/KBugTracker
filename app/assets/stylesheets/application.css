@@ -146,20 +146,9 @@ body {
 }
 
 .app_button {
-	background-color: #4da6ff;
-	border: 1px solid #0033cc;
 	border-radius: 3px 3px 3px 3px;
 	font-size: 18px;
 	margin-top: 12px;
-}
-
-.app_button {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2b7bb8);
-  background-image: -moz-linear-gradient(top, #3498db, #2b7bb8);
-  background-image: -ms-linear-gradient(top, #3498db, #2b7bb8);
-  background-image: -o-linear-gradient(top, #3498db, #2b7bb8);
-  background-image: linear-gradient(to bottom, #3498db, #2b7bb8);
   -webkit-border-radius: 3;
   -moz-border-radius: 3;
   border-radius: 3px;
@@ -170,18 +159,81 @@ body {
   text-decoration: none;
 }
 
-.app_button:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+.create_button {
+	background: #67b0e0;
+	border: solid #0033cc 1px;
+  background-image: -webkit-linear-gradient(top, #67b0e0, #2b7bab);
+  background-image: -moz-linear-gradient(top, #67b0e0, #2b7bab);
+  background-image: -ms-linear-gradient(top, #67b0e0, #2b7bab);
+  background-image: -o-linear-gradient(top, #67b0e0, #2b7bab);
+  background-image: linear-gradient(to bottom, #67b0e0, #2b7bab);
+}
+
+.create_button:hover {
+  background: #a1ddff;
+  background-image: -webkit-linear-gradient(top, #a1ddff, #4f85a6);
+  background-image: -moz-linear-gradient(top, #a1ddff, #4f85a6);
+  background-image: -ms-linear-gradient(top, #a1ddff, #4f85a6);
+  background-image: -o-linear-gradient(top, #a1ddff, #4f85a6);
+  background-image: linear-gradient(to bottom, #a1ddff, #4f85a6);
   text-decoration: none;
 }
 
-#ch_pass_req_frm {
+.edit_button {
+	border: solid #648564 1px;
+	background: #2bff2b;
+  background-image: -webkit-linear-gradient(top, #2bff2b, #12a612);
+  background-image: -moz-linear-gradient(top, #2bff2b, #12a612);
+  background-image: -ms-linear-gradient(top, #2bff2b, #12a612);
+  background-image: -o-linear-gradient(top, #2bff2b, #12a612);
+  background-image: linear-gradient(to bottom, #2bff2b, #12a612);
+}
+
+.edit_button:hover {
+	background: #a9fca9;
+  background-image: -webkit-linear-gradient(top, #a9fca9, #18b818);
+  background-image: -moz-linear-gradient(top, #a9fca9, #18b818);
+  background-image: -ms-linear-gradient(top, #a9fca9, #18b818);
+  background-image: -o-linear-gradient(top, #a9fca9, #18b818);
+  background-image: linear-gradient(to bottom, #a9fca9, #18b818);
+  text-decoration: none;
+}
+
+.delete_button {
+	background: #fc5151;
+	border: solid #6b6363 1px;
+  background-image: -webkit-linear-gradient(top, #fc5151, #b30000);
+  background-image: -moz-linear-gradient(top, #fc5151, #b30000);
+  background-image: -ms-linear-gradient(top, #fc5151, #b30000);
+  background-image: -o-linear-gradient(top, #fc5151, #b30000);
+  background-image: linear-gradient(to bottom, #fc5151, #b30000);
+}
+
+.delete_button:hover {
+	background: #fa7373;
+  background-image: -webkit-linear-gradient(top, #fa7373, #ed2828);
+  background-image: -moz-linear-gradient(top, #fa7373, #ed2828);
+  background-image: -ms-linear-gradient(top, #fa7373, #ed2828);
+  background-image: -o-linear-gradient(top, #fa7373, #ed2828);
+  background-image: linear-gradient(to bottom, #fa7373, #ed2828);
+  text-decoration: none;
+}
+
+.invisible_component {
 	visibility: hidden;
+}
+
+.critical_importance {
+	border: 1px solid #6b6363;
+	border-radius: 4px 4px 4px 4px;
+	width: 500px;
+	padding: 0px 6px 12px 8px;
+	margin-top: 20px;
+	background-color: #FFFFFF;
+}
+
+.bold {
+	font-weight: bold;
 }
 
 

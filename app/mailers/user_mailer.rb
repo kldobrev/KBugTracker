@@ -9,5 +9,9 @@ class UserMailer < ApplicationMailer
 		@user = usr
 		mail(to: @user.email, subject: 'KBugTracker: Request to change password.')
 	end
+	
+	def bye_mail(email)
+		mail(to: email, subject: "KBugTracker: Goodbye!")
+	end
 
 end

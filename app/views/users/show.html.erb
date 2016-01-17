@@ -1,0 +1,19 @@
+<h1><%= @user.username %></h1>
+
+<p><span class="bold">First name:</span> <%= @user.firstname %> <br>
+<span class="bold">Last name:</span> <%= @user.lastname %> <br>
+<span class="bold">Email:</span> <%= @user.email %> <br>
+<span class="bold">Account type:</span> <%= @user.is_public? ? "Public" : "Private" %>
+<% if current_user == @user %>
+	<br> <span class="bold">You can create projects:</span> <%= @user.is_proj_creator? ? "Yes" : "No" %>
+<% end %>
+</p>
+
+
+<%= link_to "Edit profile", edit_user_path(@user), class: "app_button edit_button" %>
+<%= link_to "Delete acount", "#", class: ["app_button", "delete_button", "visibility_button" ] %>
+
+<div class="invisible_component critical_importance" >
+	<p>Warning: This step is not revertable. Are you sure you want to do this? </p>
+	<%= link_to "Yes, delete my account", user_path(@user), method: "delete", class: "app_button delete_button" %>
+</div>

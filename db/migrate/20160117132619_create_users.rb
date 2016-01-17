@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
 			t.string :firstname
 			t.string :lastname
 			t.integer :acctype, null: false
+			t.integer :is_pr_creator, null: false
 			t.string :act_code
 			t.string :ch_pass_code
 			

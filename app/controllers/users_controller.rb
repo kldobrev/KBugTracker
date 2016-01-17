@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	skip_before_action :require_login, only: [:new, :create, :activate, :ch_pass_request, :edit_pass]
+
 	def new
 		@user = User.new
 	end
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
 		if @user and @user.update(act_code: nil)
 			flash_msgs(0, "Your account is now active. Please login to use the application.")
 		else
-			flash_msgs_now(1, "Something went wrong while trying to activate your account. Please try to activate it later.")
+			flash_msgs(1, "Something went wrong while trying to activate your account. Please try to activate it later.")
 		end
 		redirect_to root_path
 	end
@@ -64,10 +66,47 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	def show
+		@user = User.find(params[:id])
+	end
+	
+	def edit
+		@user = User.find(session[:user_id])
+	end
+	
+	def update
+		@user = User.find(session[:user_id])
+		# When the user decides he/she wants to change the password
+		if ( not user_params[:password].blank? ) && ( not @user.authenticate(user_params[:oldpass]) )
+			flash_now_msgs(1, "Wrong username or password entered.")
+		elsif @user.update(user_params)
+			flash_msgs(0, "Profile updated successfully.")
+			redirect_to user_path(@user)
+			return
+		else
+			flash_now_msgs(1, @user.errors.full_messages || "Something went wrong while trying to update your profile.")
+		end
+		render 'edit'
+	end
+	
+	def destroy
+		@user = User.find(session[:user_id])
+		#email = @user.email
+		if @user.destroy
+			UserMailer.bye_mail(@user.email).deliver_now
+			flash_msgs(0, "Your account was deleted successfully.")
+			session[:user_id] = nil
+			redirect_to root_path
+		else
+			flash_msgs_now(1, "Something went wrong while trying to delete your account.")
+			render 'edit'
+		end
+	end
+	
 	private
 	
 	def user_params
-		params.require(:user).permit(:username, :email, :password, :password_confirmation, :firstname, :lastname, :acctype)
+		params.require(:user).permit(:username, :email, :password, :password_confirmation, :firstname, :lastname, :acctype, :is_pr_creator)
 	end
 
 end

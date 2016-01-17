@@ -9,16 +9,17 @@
 </head>
 
 <body>
-		<div id="header">
+		<div id="header" data-no-turbolink>
 			<%= link_to image_tag("tracker_logo.jpg"), root_path, id: "app_logo" %>
 			<ul id="main_nav">
 				<li>
-					<% unless isLogged? %>
+					<% unless is_logged? %>
 						<%= link_to "Login", login_path %>
 					<% else %>
 						<%= link_to current_user.username, "#", id: "nav_username" %>
 						<ul class="main_nav_inner">
-							<li><a href="#">Profile</a></li>
+							<li><%= link_to "Profile", user_path(current_user) %></li>
+							<li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
 							<li><%= link_to "Logout", logout_path, method: "delete" %>
 						</ul>
 						<% end %>
@@ -60,7 +61,7 @@
 		</ul>
 		<% end %>
 		
-		<div id="body_cont">
+		<div id="body_cont" data-no-turbolink>
 			<%= yield %>
 		</div>
 		
