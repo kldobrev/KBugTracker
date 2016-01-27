@@ -141,6 +141,17 @@ body {
 	border-radius: 3px 3px 3px 3px;
 }
 
+.app_form textarea:focus {
+	background-color: #FFFF7D;
+}
+
+.app_form  textarea {
+	height: 80px;
+	width: 350px;
+	font-size: 14px;
+	border-radius: 3px 3px 3px 3px;
+}
+
 .app_form  input[type="password"]:focus {
 	background-color: #FFFF7D;
 }
@@ -156,6 +167,20 @@ body {
   color: #ffffff;
   font-size: 16px;
   padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+.app_button_smaller {
+	border-radius: 3px 3px 3px 3px;
+	font-size: 18px;
+	margin-top: 12px;
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 3px 6px 3px 6px;
   text-decoration: none;
 }
 
@@ -236,7 +261,6 @@ body {
 	font-weight: bold;
 }
 
-
 #footer {
 	position: fixed;
 	bottom: 0px;
@@ -250,3 +274,32 @@ body {
 	text-align: center;
 	font-size: 14px;
 }
+
+.left_side {
+	float: left;
+}
+
+.right_side {
+	float: right;
+}
+
+.right_side ul {
+	padding-left: 0px;
+}
+
+.right_side li {
+	list-style: none;
+	font-size: 18px;
+	padding: 0px 20px 15px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+

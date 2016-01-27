@@ -68,6 +68,10 @@ class UsersController < ApplicationController
 	
 	def show
 		@user = User.find(params[:id])
+		if current_user == @user && @user.is_proj_creator?
+			@pub_projects = @user.projects.select {|pr| pr.is_public?}
+			@prv_projects = @user.projects.select {|pr| pr.is_private?} if @user.is_private?
+		end
 	end
 	
 	def edit
@@ -91,7 +95,6 @@ class UsersController < ApplicationController
 	
 	def destroy
 		@user = User.find(session[:user_id])
-		#email = @user.email
 		if @user.destroy
 			UserMailer.bye_mail(@user.email).deliver_now
 			flash_msgs(0, "Your account was deleted successfully.")

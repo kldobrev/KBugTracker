@@ -1,0 +1,16 @@
+<h1>New project</h1>
+
+<%= form_for(@project, html: { class: "app_form" }) do |prf| %>
+	<%= prf.label "Title:" %> <br>
+	<%= prf.text_field :title %> <br>
+	<%= prf.label "Description:" %> <br>
+	<%= prf.text_area :description %> <br>
+	<% if current_user.is_private? %>
+		<%= prf.label "Project type:" %> <br>
+		<%= prf.label "Public:" %>
+		<%= prf.radio_button :prtype, 0 %>
+		<%= prf.label "Private:" %>
+		<%= prf.radio_button :prtype, 1, checked: true %>
+	<% end %>
+	<br> <%= prf.submit "Create project", class: "app_button create_button" %>
+<% end %>

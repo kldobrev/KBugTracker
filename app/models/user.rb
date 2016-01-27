@@ -8,12 +8,14 @@ class User < ActiveRecord::Base
 	validates :acctype, presence: true, inclusion: [ 0, 1 ]
 	validates :is_pr_creator, presence: true, inclusion: [ 0, 1 ]
 	
+	has_many :projects
+	
 	def is_public?
 		self.acctype == 0
 	end
 	
 	def is_private?
-		not isPublic?
+		not is_public?
 	end
 	
 	def is_activated?

@@ -1,0 +1,21 @@
+<div class="side_layout">
+
+	<div class="left_side">
+		<h1><%= @project.title %></h1>
+
+		<p><span class="bold">Description:</span> <br> <%= @project.description %> <br><br>
+		<span class="bold">Type:</span> <%= @project.is_public? ? "Public" : "Private" %></p>
+
+		<% if @project.is_editor?(current_user) %>
+			<%= link_to "Edit project", edit_project_path(@project), class: "app_button edit_button" %>
+			<%= link_to "Delete project", "#", class: "app_button delete_button visibility_button" %>
+			<div class="invisible_component critical_importance" >
+				<p>Warning: This will delete all project data including bugs, envolvement lists and comments. Are you sure you want to do this? </p>
+				<%= link_to "Yes, delete this project", project_path(@project), method: "delete", class: "app_button delete_button" %>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="right_side">
+	</div>
+</div>

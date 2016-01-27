@@ -1,0 +1,9 @@
+<h1>Edit project:</h1>
+
+<%= form_for(@project, html: {class: "app_form"}) do |frm| %>
+	<%= frm.label "Title:"%> <br>
+	<%= frm.text_field :title %> <br>
+	<%= frm.label "Description:" %> <br>
+	<%= frm.text_area :description %> <br>
+	<%= frm.submit "Save changes", class: "app_button edit_button" %>
+<% end %>
