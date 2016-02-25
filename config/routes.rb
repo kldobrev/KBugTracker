@@ -66,7 +66,8 @@ Rails.application.routes.draw do
 	resources :projects
 	
 	# statics
-	root 'sessions#new'
+	root 'statics#index'
+	get 'search' => 'statics#search'
 	
 	# users
 	get 'signup' => 'users#new', as: 'signup'
@@ -80,5 +81,8 @@ Rails.application.routes.draw do
 	post 'login' => 'sessions#create'
 	delete 'logout' => 'sessions#destroy'
 	
+	#projects
+	delete 'projects/:id/del_tag/:tagid' => 'projects#destroy_tag', as: 'delete_tag'
+	get 'tag/:tagid' => 'projects#show_tag', as: 'show_tag'
 	
 end

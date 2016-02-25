@@ -5,6 +5,17 @@
 
 		<p><span class="bold">Description:</span> <br> <%= @project.description %> <br><br>
 		<span class="bold">Type:</span> <%= @project.is_public? ? "Public" : "Private" %></p>
+		
+		<h2>Tags:</h2>
+		<% if @project.tags.count == 0 %>
+			<p>No tags for this project yet. Edit it to add some.</p>
+		<% else %>
+			<ul class="tag_list">
+				<% @project.tags.each do |tag| %>
+					<li><%= link_to tag.name, show_tag_path(tag) %></li>
+				<% end %>
+			</ul>
+		<% end %>
 
 		<% if @project.is_editor?(current_user) %>
 			<%= link_to "Edit project", edit_project_path(@project), class: "app_button edit_button" %>

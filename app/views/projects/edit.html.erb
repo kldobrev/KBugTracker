@@ -5,5 +5,21 @@
 	<%= frm.text_field :title %> <br>
 	<%= frm.label "Description:" %> <br>
 	<%= frm.text_area :description %> <br>
-	<%= frm.submit "Save changes", class: "app_button edit_button" %>
+	
+	<% if @project.tags.size > 0 %>
+		<h2>Tags:</h2>
+		<ul class="tag_list">
+			<% @project.tags.each do |tag| %>
+				<li>
+					<%= link_to "#{tag.name} [Delete]", delete_tag_path(@project, tag), method: "delete", class: "delete_tag_link" %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	<h2>Add tags:</h2>
+		<div class="tags_form">
+			<span class="tag_field"><%= text_field_tag 'tag_names[]' %><br></span>
+		</div>
+	<br><%= link_to "Add tag", "#", id: "add_tag_button", class: "app_button create_button" %>
+	<br> <%= frm.submit "Save changes", class: "app_button edit_button" %>
 <% end %>

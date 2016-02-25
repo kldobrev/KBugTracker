@@ -11,4 +11,19 @@ $(document).ready(function() {
 	$(".visibility_button").click(function() {
 		$(".invisible_component").css({"visibility": "visible"});
 	});
+	
+	$("#search_pr_radio").click(function() {
+		$("#search_pr_form").css({"display": "block"});
+		$("#search_usr_form").css({"display": "none"});
+	});
+	
+	$("#search_usr_radio").click(function() {
+		$("#search_pr_form").css({"display": "none"});
+		$("#search_usr_form").css({"display": "block"});
+	});
+	
+	$("#add_tag_button").click(function() {
+		$(".tag_field").first().clone().appendTo(".tags_form");
+	});
+	
 });
