@@ -1,0 +1,14 @@
+<% if @project.members.size == 0 %>
+  <p class="bold">This project does not have any members yet.</p>
+<% else %>
+  <ul id="all_proj_members_list">
+   <% @project.members.each do |mem| %>
+     <li>
+      <% unless @group.is_group_member?(mem.user) %>
+          <%= link_to mem.user.username, user_path(mem.user) %>
+          <%= link_to "Add to group", add_group_member_path(@project, @group, mem), method: "post", class: "app_button create_button" %>
+        <% end %>
+     </li>
+   <% end %>
+  </ul>
+<% end %>

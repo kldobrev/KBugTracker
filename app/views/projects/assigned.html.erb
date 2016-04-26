@@ -1,0 +1,12 @@
+<h1><%= link_to @user.username, user_path(@user), class: "link_def_style" %>'s projects:</h1>
+<% if @projects.size == 0 %>
+  <p class="bold">You are not participating in any projects.</p>
+<% else %>
+  <ul class="assigned_projects_list">
+    <% @projects.each do |pr| %>
+      <li>
+        <%= link_to pr.title, project_path(pr) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

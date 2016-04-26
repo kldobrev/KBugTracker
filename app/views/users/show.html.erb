@@ -21,32 +21,39 @@
 			<p>Warning: This step is not revertable. Are you sure you want to do this? </p>
 			<%= link_to "Yes, delete my account", user_path(@user), method: "delete", class: "app_button delete_button" %>
 		</div>
+                <% elsif current_user.is_proj_creator? || current_user.is_admin? %>
+                  <%= link_to "Invite to a project", "#", id: "invite_pr_button", class: "app_button create_button", data: {usr: @user.id} %>
+                  <% if current_user.is_proj_creator? && @user.is_proj_creator? %>
+                    <%= link_to "Give away ownership of a project", "#", id: "give_ownership_button", class: "app_button edit_button", data: {usr: @user.id} %>
+                  <% end %>
+                  <div id="invite_proj_form" ></div> 
+                  <div id="give_ownership_form" ></div> 
+		<% end %>
 	</div>
 
 	<div class="right_side">
-		<% if current_user.is_proj_creator? %>
-			<h2>Projects created:</h2>
+		<% if current_user == @user && current_user.is_proj_creator? %>
+			<h2>Projects owned:</h2>
 				<% if current_user.is_private? %>
 					<h3>Private (<%= @prv_projects.count %>):</h3>
-					<ul>
+					<ul class="owned_projects_list">
 						<% @prv_projects.each do |prj| %>
 							<li>
-								<%= link_to prj.title, project_path(prj) %>
+								<%= link_to prj.title, project_path(prj), class: "no_underline" %>
 								<%= link_to "Edit project", edit_project_path(prj), class: "app_button_smaller edit_button" %>
 							</li>
 						<% end %>
 					</ul>
 				<% end %>
 				<h3>Public (<%= @pub_projects.count %>):</h3>
-				<ul>
+				<ul class="owned_projects_list">
 					<% @pub_projects.each do |prj| %>
 						<li>
-							<%= link_to prj.title, project_path(prj) %>
+							<%= link_to prj.title, project_path(prj), class: "no_underline" %>
 							<%= link_to "Edit project", edit_project_path(prj), class: "app_button_smaller edit_button" %>
 						</li>
 					<% end %>
 				</ul>
-		<% end %>
 	</div>
 
 	<% end %>

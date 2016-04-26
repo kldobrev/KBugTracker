@@ -20,6 +20,7 @@
 						<ul class="main_nav_inner">
 							<li><%= link_to "Profile", user_path(current_user) %></li>
 							<li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+                                                        <li><%= link_to "Requests", all_requests_path(current_user), class: ((current_user.received_requests.size > 0) ? "new_activity" : "")  %></li>
 							<li><%= link_to "Logout", logout_path, method: "delete" %>
 						</ul>
 						<% end %>
@@ -27,9 +28,12 @@
 				<li>
 					<a href="#">Projects</a>
 					<ul class="main_nav_inner">
+                                          <% if is_logged? && current_user.is_proj_creator? %>
 						<li><%= link_to "New project", new_project_path %></li>
-						<li><a href="#">Assigned</a></li>
-						<li><a href="#">Requests</a></li>
+                                          <% end %>
+                                          <% if is_logged? %>
+                                            <li><%= link_to "Assigned", assigned_projects_path(current_user) %></li>
+                                          <% end %>
 					</ul>
 				</li>
 				<li>

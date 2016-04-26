@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 	validates :is_pr_creator, presence: true, inclusion: [0, 1]
 	
 	has_many :projects
+        has_many :made_requests, class_name: "Request", foreign_key: "from_usr_id"
+        has_many :received_requests, class_name: "Request", foreign_key: "to_usr_id"
+        has_many :members
 	
 	def is_public?
 		self.acctype == 0
@@ -25,6 +28,22 @@ class User < ActiveRecord::Base
 	def is_proj_creator?
 		self.is_pr_creator == 1
 	end
+
+        def is_proj_owner?
+          self.projects.size != 0
+        end
+
+        def made_join_request?(project)
+          request_exists?(project, 0)
+        end
+        
+        def invited_to_proj_request?(project)
+          request_exists?(project, 1)
+        end
+
+        def change_ownership_request?(project)
+          request_exists?(project, 2)
+        end
 	
 	def self.search(usr_name, fst_name, lst_name, usr_type)
 		return {} unless usr_name.present? or fst_name.present? or lst_name.present?
@@ -40,5 +59,28 @@ class User < ActiveRecord::Base
 			User.where("#{type_fltr} lastname LIKE ?", "%#{lst_name}%").order(acctype: :desc)
 		end
 	end
+        
+        def is_admin?
+          self.members.any? {|mem| mem.project.is_proj_admin?(self)}
+        end
+
+        def get_administered
+          administered = self.members.map {|mem| mem.project if mem.project.is_proj_admin?(self)}
+          administered.select {|pr| pr != nil}
+        end
+
+        private
+
+        def request_exists?(proj, type)
+          case type
+            when 0
+              Request.exists?(from_usr_id: self.id, proj_id: proj.id, req_type: type)
+            when 1
+              Request.exists?(to_usr_id: self.id, proj_id: proj.id, req_type: type)
+            when 2
+              Request.exists?(to_usr_id: self.id, proj_id: proj.id, req_type: type)
+          end
+        end
+
 
 end

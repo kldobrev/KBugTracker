@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'groups/index'
+
+  get 'groups/create'
+
+  get 'groups/add_member'
+
+  get 'groups/remove_member'
+
+  get 'groups/destroy'
+
   get 'statics/index'
 
   get 'statics/guide'
@@ -82,7 +92,29 @@ Rails.application.routes.draw do
 	delete 'logout' => 'sessions#destroy'
 	
 	#projects
-	delete 'projects/:id/del_tag/:tagid' => 'projects#destroy_tag', as: 'delete_tag'
 	get 'tag/:tagid' => 'projects#show_tag', as: 'show_tag'
+        post 'projects/:pr/add_to_proj/:usr' => 'projects#add_to_proj', as: 'add_to_proj'
+        post 'projects/:pr/add_to_group/:usr' => 'projects#add_to_group', as: 'add_to_group'
+        post 'projects/:pr/remove_from_proj/:usr' => 'projects#remove_from_proj', as: 'remove_from_proj'
+        post 'projects/:pr/remove_from_group/:usr' => 'projects#remove_from_group', as: 'remove_from_group'
+        get 'editable_projects/:usr' => 'projects#all_editable'
+        get 'owned_projects/:usr' => 'projects#all_owned'
+        get 'projects/assigned/:usr' => 'projects#assigned', as: 'assigned_projects'
+        delete 'projects/:pr/members/remove/:mem' => 'projects#remove_proj_member', as: 'remove_pr_member'
 	
+        #requests
+        post 'projects/:pr/join' => 'requests#join_proj', as: 'join_project'
+        post 'projects/:pr/invite/:usr' => 'requests#invite_to_proj', as: 'invite_to_proj'
+        post 'projects/:pr/ask_take_own/:usr' => 'requests#ask_take_ownership', as: 'ask_take_ownership'
+        get 'users/:usr/requests' => 'requests#index', as: 'all_requests'
+        get 'projects/:pr/requests' => 'requests#proj_requests', as: 'proj_requests'
+        post 'requests/accept_request/:req' => 'requests#accept_request', as: 'accept_request'
+        delete 'requests/:req/destroy' => 'requests#destroy', as: 'destroy_request'
+
+        #groups
+        get '/projects/:pr/groups/:gr' => 'projects#show_group', as: 'group'
+        get '/all_proj_members/:gr' => 'projects#all_proj_members', as: 'all_proj_members'
+        post '/projects/:pr/groups/:gr/add_member/:mem' => 'projects#add_group_member', as: 'add_group_member'
+        delete '/projects/:pr/groups/:gr/remove_member/:mem' => 'projects#remove_group_member', as: 'remove_group_member'
+        
 end

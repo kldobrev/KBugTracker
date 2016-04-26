@@ -106,6 +106,10 @@ class UsersController < ApplicationController
 		end
 	end
 	
+        def all_editable
+          administered = self.groups.map {|gr| gr.where(administrative: 1).project}
+        end
+
 	private
 	
 	def user_params

@@ -17,7 +17,11 @@
 			</ul>
 		<% end %>
 
-		<% if @project.is_editor?(current_user) %>
+                <% if @project.is_proj_owner?(current_user) || @project.is_proj_admin?(current_user) %>
+                  <%= link_to "Project requests", proj_requests_path(@project), id: "proj_requests_link", class: "link_def_style" %>
+                <% end %> <br>
+
+		<% if @project.is_proj_owner?(current_user) %>
 			<%= link_to "Edit project", edit_project_path(@project), class: "app_button edit_button" %>
 			<%= link_to "Delete project", "#", class: "app_button delete_button visibility_button" %>
 			<div class="invisible_component critical_importance" >
@@ -25,8 +29,34 @@
 				<%= link_to "Yes, delete this project", project_path(@project), method: "delete", class: "app_button delete_button" %>
 			</div>
 		<% end %>
+
+                <% unless (not is_logged?) || @project.is_member?(current_user) || @project.is_proj_owner?(current_user) || current_user.made_join_request?(@project) || current_user.invited_to_proj_request?(@project) %>
+                  <%= link_to "Apply to join", join_project_path(@project), method: "post", class: "app_button create_button" %>
+                <% end %>
 	</div>
 
 	<div class="right_side">
+          <h2>Members(<%= @project.members.size %>):</h2>
+          <ul>
+            <% @project.members.each do |mem| %>
+              <li>
+                <%= link_to mem.user.username, user_path(mem.user) %>
+                <% if @project.is_proj_owner?(current_user) || @project.is_proj_admin?(current_user) %>
+                  <%= link_to "#{mem.user == current_user ? 'Leave project' : 'Remove member'}", remove_pr_member_path(mem.project, mem), method: "delete", class: "app_button delete_button" %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+          <% if @project.is_private? %>
+            <h2>Groups:</h2>
+            <ul>
+              <% @project.groups.each do |gr| %>
+                <li>
+                  <%= link_to gr.name, group_path(@project, gr) %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
 	</div>
 </div>

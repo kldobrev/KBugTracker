@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	
 	before_action :require_login
-	helper_method 'is_logged?', 'current_user', 'flash_msgs', 'flash_now_msgs'
+	helper_method 'is_logged?', 'current_user', 'flash_msgs', 'flash_now_msgs', :get_req_type_literal
 	
 	def is_logged?
 		session[:user_id] != nil
@@ -14,6 +14,15 @@ class ApplicationController < ActionController::Base
 		@current_user ||= User.find(session[:user_id]) if is_logged?
 	end
 	
+        def get_req_type_literal(type)
+          case type
+            when 0 then "Join project"
+            when 1 then "Project invitation"
+            when 2 then "Receive ownership"
+            else ""
+          end
+        end
+
 	private
 	
 	# Helper functions to fill the messages hash

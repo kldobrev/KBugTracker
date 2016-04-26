@@ -249,7 +249,7 @@ ul > li {
 }
 
 .invisible_component {
-	visibility: hidden;
+  display: none;
 }
 
 .critical_importance {
@@ -293,8 +293,11 @@ ul > li {
 
 .right_side li {
 	list-style: none;
-	font-size: 18px;
 	padding: 0px 20px 15px 0px;
+}
+
+.owned_projects_list li {
+  font-size: 18px;
 }
 
 #search_pr_form {
@@ -346,11 +349,78 @@ ul > li {
 	color: #4d4d4d;
 }
 
-.tag_list a:hover {
+.tag_list li:hover {
 	color: #ff1a1a;
 }
 
 .sch_results a {
 	font-size: 18px;
+}
+
+.grounded {
+  clear: both;
+}
+
+.small_icon img {
+  height: 21px;
+  width: 21px;
+}
+
+.main_nav_inner > li .new_activity {
+  font-weight: bold;
+  color: #ff0000;
+}
+
+#invite_proj_form li {
+  margin-top: 18px;
+}
+
+#give_ownership_form li {
+  margin-top: 18px;
+}
+
+.no_underline {
+  text-decoration: none;
+  color: #003cb3;
+}
+
+.no_underline:hover {
+  color: #80aaff;
+} 
+
+#add_gr_member_form {
+  display: none;
+}
+
+#all_proj_members_list li {
+  margin-top: 18px;
+}
+
+#all_group_members_list li {
+  margin-top: 18px;
+}
+
+.assigned_projects_list a {
+  font-size: 20px; 
+  text-decoration: none;
+  color: #003cb3;
+}
+
+.assigned_projects_list a:hover {
+  color: #80aaff;
+}
+
+.link_def_style {
+  text-decoration: none;
+  color: #003cb3;
+}
+
+.link_def_style:hover {
+  color: #80aaff;
+}
+
+#proj_requests_link {
+  font-size: 20px;
+  display: block;
 }
 

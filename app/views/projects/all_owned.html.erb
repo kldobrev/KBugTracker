@@ -1,0 +1,14 @@
+<% if @owned.size == 0 %>
+  <p>You do not own any projects yet.</p>
+<% else %>
+  <ul>
+    <% @owned.each do |pr| %>
+      <li>
+        <% unless (@user.is_public? && pr.is_private?) || @user.change_ownership_request?(pr) %>
+          <%= link_to pr.title, project_path(pr) %>
+          <%= link_to "Give ownership", ask_take_ownership_path(pr, @user), method: "post", class: "app_button edit_button" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

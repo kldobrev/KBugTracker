@@ -1,0 +1,14 @@
+<% if @editable.size == 0 %>
+  <p>You do not have that authority in any of your projects yet.</p>
+<% else %>
+  <ul>
+    <% @editable.each do |pr| %>
+      <li>
+        <% unless (@user.is_public? && pr.is_private?) || @user.invited_to_proj_request?(pr) || @user.made_join_request?(pr) %>
+          <%= link_to pr.title, project_path(pr) %>
+          <%= link_to "Invite to join", invite_to_proj_path(pr, @user), method: "post", class: "app_button create_button" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

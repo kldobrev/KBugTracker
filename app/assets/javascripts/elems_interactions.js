@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 	
 	$(".visibility_button").click(function() {
-		$(".invisible_component").css({"visibility": "visible"});
+		$(".invisible_component").css({"display": "block"});
 	});
 	
 	$("#search_pr_radio").click(function() {
@@ -26,4 +26,17 @@ $(document).ready(function() {
 		$(".tag_field").first().clone().appendTo(".tags_form");
 	});
 	
+        $("#invite_pr_button").click(function() {
+          $("#give_ownership_form").css({"display": "none"});
+          $("#invite_proj_form").load("/editable_projects/" + $("#invite_pr_button").data("usr")).css({"display": "block"});
+        });
+
+        $("#give_ownership_button").click(function() {
+          $("#invite_proj_form").css({"display": "none"});
+          $("#give_ownership_form").load("/owned_projects/" + $("#give_ownership_button").data("usr")).css({"display": "block"});
+        });
+
+        $("#add_gr_member_button").click(function() {
+          $("#add_gr_member_form").load("/all_proj_members/" + $("#add_gr_member_button").data("gr")).css({"display": "block"});
+        });
 });

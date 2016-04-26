@@ -1,0 +1,45 @@
+<h1><%= link_to current_user.username, user_path(current_user), class: "link_def_style" %>'s requests:</h1>
+
+<div class="side_layout">
+  <div class="left_side">
+    <% if @received.size == 0 %>
+      <h2>No requests recieved yet.</h2>
+    <% else %>
+      <h2>Received (<%= @received.size %>):</h2>
+      <ul>
+        <% @received.each do |rreq| %>
+          <li>
+            <p><span class="bold">Request type:</span> <%= get_req_type_literal(rreq.req_type) %> <br>
+            <span class="bold">Project: </span><%= link_to rreq.project.title, project_path(rreq.project), class: "no_underline" %> <br>
+            <span class="bold">From: </span><%= link_to rreq.creator.username, user_path(rreq.creator), class: "no_underline" %>
+            </p>
+            <%= link_to "Accept request", accept_request_path(rreq), method: "post", class: "app_button create_button" %>
+            <%= link_to "Delete request", destroy_request_path(rreq), method: "delete", class: "app_button delete_button" %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="right_side">
+    <% if @created.size == 0 %>
+      <h2>No requests sent yet.</h2>
+    <% else %>
+      <h2>Sent (<%= @created.size %>):</h2>
+      <ul>
+        <% @created.each do |creq| %>
+          <li>
+          <p>
+            <span class="bold">Request type: </span> <%= get_req_type_literal(creq.req_type) %> <br>
+            <span class="bold">Project:</span> <%= link_to creq.project.title, project_path(creq.project), class: "no_underline" %> 
+            <% unless creq.is_join_req? %>
+              <br> <span class="bold">To:</span> <%= link_to creq.receiver.username, user_path(creq.receiver), class: "no_underline" %> 
+            <% end%>
+          </p>
+            <%= link_to "Delete request", destroy_request_path(creq), method: "delete", class: "app_button delete_button" %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

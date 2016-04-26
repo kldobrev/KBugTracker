@@ -1,0 +1,37 @@
+<h1><%= link_to @project.title, project_path(@project), class: "link_def_style" %> requests:</h1>
+
+<% if @project.requests.size == 0 %>
+  <p class="bold">There are no requests for this project.</p>
+<% else %>
+  <div class="side_layout">
+    <div class="left_side">
+      <ul>
+        <h2>Join requests (<%= @join_req.size %>):</h2>
+        <% @join_req.each do |req| %>
+          <li>
+            <p>
+              <span class="bold">From: </span><%= link_to req.creator.username, user_path(req.creator), class: "no_underline" %> <br>
+            </p>
+            <%= link_to "Accept request", accept_request_path(req), method: "post", class: "app_button create_button" %>
+            <%= link_to "Delete request", destroy_request_path(req), method: "delete", class: "app_button delete_button" %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
+    <div class="right_side">
+      <h2>Invitations (<%= @invitations.size %>):</h2>
+      <ul>
+        <% @invitations.each do |req| %>
+          <li>
+            <p>
+              <span class="bold">From: </span><%= link_to req.creator.username, user_path(req.creator), class: "no_underline" %> <br>
+              <span class="bold">To: </span><%= link_to req.receiver.username, user_path(req.receiver), class: "no_underline" %>
+            </p>
+              <%= link_to "Delete request", destroy_request_path(req), method: "delete", class: "app_button delete_button" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

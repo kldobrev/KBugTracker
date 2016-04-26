@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216211642) do
+ActiveRecord::Schema.define(version: 20160417200049) do
+
+  create_table "group_members", id: false, force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_members", ["group_id"], name: "index_group_members_on_group_id"
+  add_index "group_members", ["member_id"], name: "index_group_members_on_member_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.integer  "administrative"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,6 +50,13 @@ ActiveRecord::Schema.define(version: 20160216211642) do
   create_table "projects_tags", id: false, force: :cascade do |t|
     t.integer "project_id"
     t.integer "tag_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "from_usr_id"
+    t.integer "to_usr_id"
+    t.integer "proj_id"
+    t.integer "req_type"
   end
 
   create_table "tags", force: :cascade do |t|

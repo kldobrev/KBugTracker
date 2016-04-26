@@ -7,10 +7,12 @@ class Project < ActiveRecord::Base
 	
 	belongs_to :user
 	has_and_belongs_to_many :tags, -> {order "name ASC"}
-	
-	def is_editor?(user)
-		self.user == user
-	end
+        has_many :groups
+        has_many :members
+        has_many :requests, foreign_key: "proj_id"
+
+        accepts_nested_attributes_for :groups, allow_destroy: true
+        accepts_nested_attributes_for :tags, allow_destroy: true
 	
 	def is_public?
 		self.prtype == 0
@@ -19,7 +21,23 @@ class Project < ActiveRecord::Base
 	def is_private?
 		not is_public?
 	end
-	
+
+        def is_member?(user)
+          self.members.any? {|mem| mem.user == user}
+        end
+
+        def has_admin_group?
+          self.groups.exists?(administrative: 1)
+        end
+
+        def is_proj_admin?(user)
+          self.is_member?(user) && self.groups.any? {|gr| gr.is_administrative? && gr.is_group_member?(user)}
+        end
+
+        def is_proj_owner?(user)
+          self.user == user
+        end
+
 	private
 	
 	def default_values
@@ -36,5 +54,4 @@ class Project < ActiveRecord::Base
 		end
 	end
 	
-
 end

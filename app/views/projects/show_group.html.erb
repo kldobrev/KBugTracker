@@ -1,0 +1,23 @@
+<h1><%= link_to @group.project.title, project_path(@group.project), class: "link_def_style" %> (<%= @group.name %>):</h1>
+
+<% if @group.members.size == 0 %>
+  <p class="bold">This group does not have any members yet.</p>
+<% else %>
+  <h2>Members (<%= @group.members.size %>):</h2>
+  <ul id="all_group_members_list">
+    <% @group.members.each do |mem| %>
+      <li>
+        <%= link_to mem.user.username, user_path(mem.user) %> 
+        <% if @project.is_proj_owner?(current_user) || @project.is_proj_admin?(current_user) %>
+          <%= link_to "#{mem.user == current_user ? 'Leave group' : 'Remove from group'}", remove_group_member_path(@project, @group, mem), method: "delete", class: "app_button delete_button" %>
+        <% end %>
+      </li>
+    <% end%>
+  </ul>
+<% end %>
+<br>
+<% if (@project.is_proj_owner?(current_user) || @project.is_proj_admin?(current_user)) && @project.members.size > 0 %>
+  <%= link_to "Add member", "#", id: "add_gr_member_button", class: "app_button edit_button", data: {gr: @group.id} %>
+ <div id="add_gr_member_form"></div>
+<% end %>
+
