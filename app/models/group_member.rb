@@ -6,3 +6,4 @@ class GroupMember < ActiveRecord::Base
   validates :member, uniqueness: {scope: :group, message: "This user is already a member of this group."}  
 
 end
+

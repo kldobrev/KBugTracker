@@ -7,3 +7,4 @@ class Member < ActiveRecord::Base
   has_many :groups, through: :group_members
 
 end
+

@@ -1,70 +1,67 @@
 <h1>Search</h1>
 
 <%= form_for(:search, method: "get", html: {class: "app_form"}) do |frm| %>
-	<% if is_logged? %>
-		<%= frm.label "Search for:" %>
-		<%= frm.label "Projects" %>
-		<%= frm.radio_button :item, 0, id: "search_pr_radio", checked: true %>
-		<%= frm.label "Users" %>
-		<%= frm.radio_button :item, 1, id: "search_usr_radio" %>
-		
-			<div id="search_usr_form">
-				<%= frm.label "Username:" %>
-				<%= frm.text_field :username %> <br>
-				<%= frm.label "First name:" %>
-				<%= frm.text_field :firstname %> <br>
-				<%= frm.label "Last name:" %>
-				<%= frm.text_field :lastname %> <br>
-				<% if current_user.is_private? %>
-					<%= frm.label "User type:" %>
-					<%= frm.label "Public" %>
-					<%= frm.radio_button :usr_type, 0 %>
-					<%= frm.label "Private" %>
-					<%= frm.radio_button :usr_type, 1, checked: true %>
-					<%= frm.label "Both" %>
-					<%= frm.radio_button :usr_type, 2 %>
-				<% end %>
-			</div>
-	<% else %>
-		<%= frm.label "Search for project." %>
-	<% end %>
-	<div id="search_pr_form">
-		<%= frm.label "Project:" %>
-		<%= frm.text_field :query %> <br>
-		<%= frm.label "Search project description as well as title:" %>
-		<%= frm.check_box :sch_descr %> <br>
-		<% if is_logged? && current_user.is_private? %>
-			<%= frm.label "Project type:" %>
-			<%= frm.label "Public" %>
-			<%= frm.radio_button :pr_type, 0, checked: true %>
-			<%= frm.label "Private" %>
-			<%= frm.radio_button :pr_type, 1 %>
-			<%= frm.label "Both" %>
-			<%= frm.radio_button :pr_type, 2 %>
-		<% end %>
-	</div>
-	
- <br> <%= frm.submit "Search", name: nil, class: "app_button edit_button" %>
+  <% if is_logged? %>
+    <%= frm.label "Search for:" %>
+    <%= frm.label "Projects" %>
+    <%= frm.radio_button :item, 0, id: "search_pr_radio", checked: true %>
+    <%= frm.label "Users" %>
+    <%= frm.radio_button :item, 1, id: "search_usr_radio" %>
+
+    <div id="search_usr_form">
+      <%= frm.label "Username:" %>
+      <%= frm.text_field :username %> <br>
+      <%= frm.label "First name:" %>
+      <%= frm.text_field :firstname %> <br>
+      <%= frm.label "Last name:" %>
+      <%= frm.text_field :lastname %> <br>
+      <% if current_user.is_private? %>
+        <%= frm.label "User type:" %>
+        <%= frm.label "Public" %>
+        <%= frm.radio_button :usr_type, 0 %>
+        <%= frm.label "Private" %>
+        <%= frm.radio_button :usr_type, 1, checked: true %>
+        <%= frm.label "Both" %>
+        <%= frm.radio_button :usr_type, 2 %>
+      <% end %>
+    </div>
+    <% else %>
+      <%= frm.label "Search for project." %>
+    <% end %>
+    <div id="search_pr_form">
+      <%= frm.label "Project:" %>
+      <%= frm.text_field :query %> <br>
+      <%= frm.label "Search project description as well as title:" %>
+      <%= frm.check_box :sch_descr %> <br>
+      <% if is_logged? && current_user.is_private? %>
+        <%= frm.label "Project type:" %>
+        <%= frm.label "Public" %>
+        <%= frm.radio_button :pr_type, 0, checked: true %>
+        <%= frm.label "Private" %>
+        <%= frm.radio_button :pr_type, 1 %>
+        <%= frm.label "Both" %>
+        <%= frm.radio_button :pr_type, 2 %>
+      <% end %>
+    </div>
+
+  <br> <%= frm.submit "Search", name: nil, class: "app_button edit_button" %>
 <% end %>
 
 <% if @results_pr && @results_pr.count > 0 %>
-	<h2>Results (<%= @results_pr.count %>):</h2>
-		<ul class="sch_results">
-			<% @results_pr.each do |pr| %>
-				<li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr) %></li>
-			<% end %>
-		</ul>
+  <h2>Results (<%= @results_pr.count %>):</h2>
+  <ul class="sch_results">
+    <% @results_pr.each do |pr| %>
+      <li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr) %></li>
+    <% end %>
+  </ul>
 <% elsif @results_usr && @results_usr.count > 0 %>
-	<h2>Results (<%= @results_usr.count %>):</h2>
-	<ul class="sch_results">
-		<% @results_usr.each do |res| %>
-			<li><%= link_to "#{res.username}: First name: #{res.firstname}, Last name: #{res.lastname}, Type: #{res.acctype == 0 ? 'Public' : 'Private'}", user_path(res) %></li>
-		<% end %>
-	</ul>
+  <h2>Results (<%= @results_usr.count %>):</h2>
+  <ul class="sch_results">
+    <% @results_usr.each do |res| %>
+      <li><%= link_to "#{res.username}: First name: #{res.firstname}, Last name: #{res.lastname}, Type: #{res.acctype == 0 ? 'Public' : 'Private'}", user_path(res) %></li>
+    <% end %>
+  </ul>
 <% else %>
-	<h2>No results found.</h2>
+  <h2>No results found.</h2>
 <% end %>
-
-
-
 

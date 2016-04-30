@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-	<h1>KBugTracker welcomes you!</h1>
+  <h1>KBugTracker welcomes you!</h1>
 
-	<p>You have registered in our tracker with user id: <%= @user.username %>. <br>
-	Before you login to use it you must activate your account.</p>
-	<%= link_to "Please click here to do so.", activate_url(atk: @user.act_code) %>
+  <p>You have registered in our tracker with user id: <%= @user.username %>. <br>
+      Before you login to use it you must activate your account.</p>
+  <%= link_to "Please click here to do so.", activate_url(atk: @user.act_code) %>
 </body>
 </html>
+

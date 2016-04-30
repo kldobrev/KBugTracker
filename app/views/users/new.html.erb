@@ -1,26 +1,27 @@
 <h1>Sign up</h1>
 
 <%= form_for(@user, html: { class: "app_form" }) do |uf| %>
-	<%= uf.label "Username:" %> <br>
-	<%= uf.text_field :username %> <br>
-	<%= uf.label "Email:" %> <br>
-	<%= uf.text_field :email %> <br>
-	<%= uf.label "Password:" %> <br>
-	<%= uf.password_field :password %> <br>
-	<%= label_tag "Repeat password" %> <br>
-	<%= uf.password_field :password_confirmation %> <br> <br>
-	<%= uf.label "Account type:" %>
-	<%= uf.label "Public" %>
-	<%= uf.radio_button :acctype, 0, checked: true %>
-	<%= uf.label "Private" %>
-	<%= uf.radio_button :acctype, 1 %> <br>
-	<%= uf.label "This user will be able to create projects:" %>
-	<%= uf.check_box :is_pr_creator %> <br> <br>
-	<%= uf.label "First name:" %> <br>
-	<%= uf.text_field :firstname %> <br>
-	<%= uf.label "Last name:" %> <br>
-	<%= uf.text_field :lastname %> <br>
-	
-	<%= uf.submit "Sign up", class: "app_button create_button" %>
-	
+  <%= uf.label "Username:" %> <br>
+  <%= uf.text_field :username %> <br>
+  <%= uf.label "Email:" %> <br>
+  <%= uf.text_field :email %> <br>
+  <%= uf.label "Password:" %> <br>
+  <%= uf.password_field :password %> <br>
+  <%= label_tag "Repeat password" %> <br>
+  <%= uf.password_field :password_confirmation %> <br> <br>
+  <%= uf.label "Account type:" %>
+  <%= uf.label "Public" %>
+  <%= uf.radio_button :acctype, 0, checked: true %>
+  <%= uf.label "Private" %>
+  <%= uf.radio_button :acctype, 1 %> <br>
+  <%= uf.label "This user will be able to create projects:" %>
+  <%= uf.check_box :is_pr_creator %> <br> <br>
+  <%= uf.label "First name:" %> <br>
+  <%= uf.text_field :firstname %> <br>
+  <%= uf.label "Last name:" %> <br>
+  <%= uf.text_field :lastname %> <br>
+
+  <%= uf.submit "Sign up", class: "app_button create_button" %>
+
 <% end %>
+

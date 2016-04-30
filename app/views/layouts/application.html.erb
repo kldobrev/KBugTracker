@@ -9,66 +9,67 @@
 </head>
 
 <body>
-		<div id="header" data-no-turbolink>
-			<%= link_to image_tag("tracker_logo.jpg"), root_path, id: "app_logo" %>
-			<ul id="main_nav">
-				<li>
-					<% unless is_logged? %>
-						<%= link_to "Login", login_path %>
-					<% else %>
-						<%= link_to current_user.username, "#", id: "nav_username" %>
-						<ul class="main_nav_inner">
-							<li><%= link_to "Profile", user_path(current_user) %></li>
-							<li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
-                                                        <li><%= link_to "Requests", all_requests_path(current_user), class: ((current_user.received_requests.size > 0) ? "new_activity" : "")  %></li>
-							<li><%= link_to "Logout", logout_path, method: "delete" %>
-						</ul>
-						<% end %>
-				</li>
-				<li>
-					<a href="#">Projects</a>
-					<ul class="main_nav_inner">
-                                          <% if is_logged? && current_user.is_proj_creator? %>
-						<li><%= link_to "New project", new_project_path %></li>
-                                          <% end %>
-                                          <% if is_logged? %>
-                                            <li><%= link_to "Assigned", assigned_projects_path(current_user) %></li>
-                                          <% end %>
-					</ul>
-				</li>
-				<li>
-					<%= link_to "Search", search_path %>
-				</li>
-				<li>
-					<a href="#">About</a>
-					<ul class="main_nav_inner">
-						<li><a href="#">Application</a></li>
-						<li><a href="#">Guide</a></li>
-						<li><a href="#">Contacts</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
+  <div id="header" data-no-turbolink>
+    <%= link_to image_tag("tracker_logo.jpg"), root_path, id: "app_logo" %>
+    <ul id="main_nav">
+      <li>
+        <% unless is_logged? %>
+          <%= link_to "Login", login_path %>
+        <% else %>
+          <%= link_to current_user.username, "#", id: "nav_username" %>
+          <ul class="main_nav_inner">
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Requests", all_requests_path(current_user), class: ((current_user.received_requests.size > 0) ? "new_activity" : "")  %></li>
+            <li><%= link_to "Logout", logout_path, method: "delete" %>
+          </ul>
+        <% end %>
+      </li>
+      <li>
+        <a href="#">Projects</a>
+        <ul class="main_nav_inner">
+          <% if is_logged? && current_user.is_proj_creator? %>
+            <li><%= link_to "New project", new_project_path %></li>
+          <% end %>
+          <% if is_logged? %>
+            <li><%= link_to "Assigned", assigned_projects_path(current_user) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Search", search_path %>
+      </li>
+      <li>
+        <a href="#">About</a>
+        <ul class="main_nav_inner">
+          <li><a href="#">Application</a></li>
+          <li><a href="#">Guide</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 
+    Display flash messages for successful or failed actions
+    and validation results.
+  -->
+  <% unless flash[:status] == nil %>
+    <ul id="flashes" class=<%= flash[:status] == 0 ? "fl_success" : "fl_err" %> >
+      <% flash[:msgs].each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  <% end %>
 		
-		<!-- 
-					Display flash messages for successful or failed actions
-					and validation results.
-		-->
-		<% unless flash[:status] == nil %>
-		<ul id="flashes" class=<%= flash[:status] == 0 ? "fl_success" : "fl_err" %> >
-			<% flash[:msgs].each do |m| %>
-				<li><%= m %></li>
-			<% end %>
-		</ul>
-		<% end %>
-		
-		<div id="body_cont" data-no-turbolink>
-			<%= yield %>
-		</div>
-		
-		<div id="footer">
-			<p>&copy 2015. Developed by Konstantin Dobrev. All rights reserved. </p>
-		</div>
-	</body>
+  <div id="body_cont" data-no-turbolink>
+    <%= yield %>
+  </div>
+
+  <div id="footer">
+    <p>&copy 2015. Developed by Konstantin Dobrev. All rights reserved. </p>
+  </div>
+</body>
 
 </html>
+

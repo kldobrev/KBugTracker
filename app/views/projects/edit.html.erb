@@ -1,52 +1,53 @@
 <%= form_for(@project, html: {class: "app_form"}) do |frm| %>
 
-<div class="side_layout">
-<div class="left_side">
-<h1>Edit project:</h1>
-	<%= frm.label "Title:"%> <br>
-	<%= frm.text_field :title %> <br>
-	<%= frm.label "Description:" %> <br>
-	<%= frm.text_area :description %> <br>
-	
-	<% if @project.tags.size > 0 %>
-		<h2>Delete tags:</h2>
-		<ul class="tag_list">
-			<%= frm.fields_for :tags do |tgf| %>
-				<li>
-                                  <%= tgf.label :_destroy, tgf.object.name %>
-                                  <%= tgf.check_box :_destroy %>
-				</li>
-			<% end %>
-		</ul>
-	<% end %>
-	<h2>Add tags:</h2>
-		<div class="tags_form">
-			<span class="tag_field"><%= text_field_tag 'tag_names[]' %><br></span>
-		</div>
-	<br><%= link_to "Add tag", "#", id: "add_tag_button", class: "app_button create_button" %>
-</div>
+  <div class="side_layout">
+    <div class="left_side">
+    <h1>Edit project:</h1>
+      <%= frm.label "Title:"%> <br>
+      <%= frm.text_field :title %> <br>
+      <%= frm.label "Description:" %> <br>
+      <%= frm.text_area :description %> <br>
 
-<div class="right_side">
-  <% if @project.is_private? %>
-    <h2>Add group:</h2>
-    <%= text_field_tag :gr_name %> <br>
-    <% unless @project.has_admin_group? %>
-     <%= label_tag :gr_is_admin, "Mark if the group is administrative:" %>
-     <%= check_box_tag :gr_is_admin %>
-    <% end %>
-
-    <h2>Delete/edit groups(<%= @pr_groups_num %>):</h2>
-    <% if @pr_groups_num == 0  %>
-      <p>No groups created yet.</p>
-    <% else %>
-      <%= frm.fields_for :groups do |pgr| %>
-       <%= pgr.label :_destroy, image_tag("trash_can_closed.png"), class: "small_icon" %> <%= pgr.check_box :_destroy %>  <%= pgr.label :name, image_tag("edit_icon.png"), class: "small_icon" %> <%= pgr.text_field :name %>  <br>
+      <% if @project.tags.size > 0 %>
+        <h2>Delete tags:</h2>
+        <ul class="tag_list">
+        <%= frm.fields_for :tags do |tgf| %>
+          <li>
+            <%= tgf.label :_destroy, tgf.object.name %>
+            <%= tgf.check_box :_destroy %>
+          </li>
+        <% end %>
+        </ul>
       <% end %>
-    <% end %>
-  <% end %>
-</div>
-</div>
+      <h2>Add tags:</h2>
+      <div class="tags_form">
+        <span class="tag_field"><%= text_field_tag 'tag_names[]' %><br></span>
+      </div>
+      <br><%= link_to "Add tag", "#", id: "add_tag_button", class: "app_button create_button" %>
+    </div>
 
-<div class="grounded" />
-	<br> <%= frm.submit "Save changes", class: "app_button edit_button" %>
+    <div class="right_side">
+      <% if @project.is_private? %>
+        <h2>Add group:</h2>
+        <%= text_field_tag :gr_name %> <br>
+        <% unless @project.has_admin_group? %>
+          <%= label_tag :gr_is_admin, "Mark if the group is administrative:" %>
+          <%= check_box_tag :gr_is_admin %>
+        <% end %>
+
+        <h2>Delete/edit groups(<%= @pr_groups_num %>):</h2>
+        <% if @pr_groups_num == 0  %>
+          <p>No groups created yet.</p>
+        <% else %>
+          <%= frm.fields_for :groups do |pgr| %>
+            <%= pgr.label :_destroy, image_tag("trash_can_closed.png"), class: "small_icon" %> <%= pgr.check_box :_destroy %>  <%= pgr.label :name, image_tag("edit_icon.png"), class: "small_icon" %> <%= pgr.text_field :name %>  <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="grounded" />
+  <br> <%= frm.submit "Save changes", class: "app_button edit_button" %>
 <% end %>
+

@@ -1,7 +1,8 @@
 <h1>Projects tagged with "<%= @tag_name %>":</h1>
 
 <ul class="sch_results">
-	<% @projects.each do |pr| %>
-		<li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr), class: "link_def_style" %></li>
-	<% end %>
+  <% @projects.each do |pr| %>
+    <li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr), class: "link_def_style" %></li>
+  <% end %>
 </ul>
+

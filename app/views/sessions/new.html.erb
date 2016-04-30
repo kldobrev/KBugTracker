@@ -1,14 +1,14 @@
 <div id="login_frm" >
-	<h1>Welcome!</h1>
+  <h1>Welcome!</h1>
 
-	<p>Please login to use the app:</p>
-	<%= form_for(:session, url: login_path, html: { class: "app_form" }) do |frm| %>
-		<%= frm.label "Username:" %> <br>
-		<%= frm.text_field :username %> <br>
-		<%= frm.label "Password:" %> <br>
-		<%= frm.password_field :password %> <br>
-		<%= frm.submit "Login", class: "app_button create_button" %>
-	<% end %>
+  <p>Please login to use the app:</p>
+  <%= form_for(:session, url: login_path, html: { class: "app_form" }) do |frm| %>
+    <%= frm.label "Username:" %> <br>
+    <%= frm.text_field :username %> <br>
+    <%= frm.label "Password:" %> <br>
+    <%= frm.password_field :password %> <br>
+    <%= frm.submit "Login", class: "app_button create_button" %>
+  <% end %>
 </div>
 
 <p>Don't have an account? <%= link_to "Sign up here.", "signup" %></p>
@@ -16,10 +16,10 @@
 <%= link_to "Forgot password?", "#", class: "visibility_button" %>
 <br> <br>
 <div class="invisible_component">
-	<%= form_tag({ controller: "users", action: "ch_pass_request" }, method: "post", class: "app_form" ) do  %>
-		<%= label_tag "Please enter your email address:" %> <br>
-		<%= text_field_tag :usr_email %>  
-		<%= submit_tag "Request change", class: "app_button" %>
-	<% end %>
+  <%= form_tag({ controller: "users", action: "ch_pass_request" }, method: "post", class: "app_form" ) do  %>
+    <%= label_tag "Please enter your email address:" %> <br>
+    <%= text_field_tag :usr_email %>  
+    <%= submit_tag "Request change", class: "app_button" %>
+  <% end %>
 </div>
 	

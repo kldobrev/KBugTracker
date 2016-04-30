@@ -2,24 +2,24 @@
 <h2><%= @user.username %>:</h2>
 
 <%= form_for(@user, html: { class: "app_form" }) do |frm| %>
-	<%= frm.label "Email:" %> <br>
-	<%= frm.text_field :email %> <br>
-	<%= frm.label "First name:" %> <br>
-	<%= frm.text_field :firstname %> <br>
-	<%= frm.label "Last name:" %> <br>
-	<%= frm.text_field :lastname %> <br>
-	<%= link_to "Change password", "#", class: "visibility_button" %> 
-	
-	<br>
-	
-	<div class="invisible_component">
-		<%= frm.label "Old password:" %> <br>
-		<%= frm.password_field :oldpass %> <br>
-		<%= frm.label "New password:" %> <br>
-		<%= frm.password_field :password %> <br>
-		<%= frm.label "Repeat new password:" %> <br>
-		<%= frm.password_field :password_confirmation %>
-	</div>
-	
-	<%= frm.submit "Save changes", class: "app_button edit_button" %>	
+  <%= frm.label "Email:" %> <br>
+  <%= frm.text_field :email %> <br>
+  <%= frm.label "First name:" %> <br>
+  <%= frm.text_field :firstname %> <br>
+  <%= frm.label "Last name:" %> <br>
+  <%= frm.text_field :lastname %> <br>
+  <%= link_to "Change password", "#", class: "visibility_button" %> 
+
+  <br>
+  <div class="invisible_component">
+    <%= frm.label "Old password:" %> <br>
+    <%= frm.password_field :oldpass %> <br>
+    <%= frm.label "New password:" %> <br>
+    <%= frm.password_field :password %> <br>
+    <%= frm.label "Repeat new password:" %> <br>
+    <%= frm.password_field :password_confirmation %>
+  </div>
+
+  <%= frm.submit "Save changes", class: "app_button edit_button" %>	
 <% end %>
+

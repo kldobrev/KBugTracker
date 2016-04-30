@@ -9,3 +9,4 @@ class CreateRequests < ActiveRecord::Migration
     end
   end
 end
+
