@@ -37,6 +37,15 @@
         </ul>
       </li>
       <li>
+        <a href="#">Defects</a>
+        <% if is_logged? %>
+          <ul class="main_nav_inner">
+            <li><%= link_to "Raised", user_raised_defects_path(current_user) %></li>
+            <li><%= link_to "Assigned", user_assigned_defects_path(current_user) %></li>
+          </ul>
+        <% end %>
+      </li>
+      <li>
         <%= link_to "Search", search_path %>
       </li>
       <li>

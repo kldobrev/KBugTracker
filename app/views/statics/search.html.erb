@@ -51,14 +51,14 @@
   <h2>Results (<%= @results_pr.count %>):</h2>
   <ul class="sch_results">
     <% @results_pr.each do |pr| %>
-      <li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr) %></li>
+      <li><%= link_to "#{pr.title}: #{pr.description}, Type: #{pr.prtype == 0 ? 'Public' : 'Private' }", project_path(pr), class: "link_def_style" %></li>
     <% end %>
   </ul>
 <% elsif @results_usr && @results_usr.count > 0 %>
   <h2>Results (<%= @results_usr.count %>):</h2>
   <ul class="sch_results">
     <% @results_usr.each do |res| %>
-      <li><%= link_to "#{res.username}: First name: #{res.firstname}, Last name: #{res.lastname}, Type: #{res.acctype == 0 ? 'Public' : 'Private'}", user_path(res) %></li>
+      <li><%= link_to "#{res.username}: First name: #{res.firstname}, Last name: #{res.lastname}, Type: #{res.acctype == 0 ? 'Public' : 'Private'}", user_path(res), class: "link_def_style" %></li>
     <% end %>
   </ul>
 <% else %>

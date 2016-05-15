@@ -74,6 +74,9 @@ Rails.application.routes.draw do
 	
   resources :users
   resources :projects
+  resources :projects do
+    resources :defects
+  end
 
   # statics
   root 'statics#index'
@@ -116,5 +119,9 @@ Rails.application.routes.draw do
   get '/all_proj_members/:gr' => 'projects#all_proj_members', as: 'all_proj_members'
   post '/projects/:pr/groups/:gr/add_member/:mem' => 'projects#add_group_member', as: 'add_group_member'
   delete '/projects/:pr/groups/:gr/remove_member/:mem' => 'projects#remove_group_member', as: 'remove_group_member'
+
+  #defects
+  get '/users/:usr/defects/raised' => 'defects#raised_defects', as: 'user_raised_defects'
+  get 'users/:usr/defects/assigned' => 'defects#assigned_defects', as: 'user_assigned_defects'
 
 end

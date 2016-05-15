@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
   has_many :groups
   has_many :members
   has_many :requests, foreign_key: "proj_id"
+  has_many :defects
 
   accepts_nested_attributes_for :groups, allow_destroy: true
   accepts_nested_attributes_for :tags, allow_destroy: true

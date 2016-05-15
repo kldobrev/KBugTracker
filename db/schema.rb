@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417200049) do
+ActiveRecord::Schema.define(version: 20160507144351) do
+
+  create_table "defects", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "raised_by_id"
+    t.integer  "assigned_to_id"
+    t.integer  "to_group_id"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "status"
+    t.integer  "importance"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "defects", ["assigned_to_id"], name: "index_defects_on_assigned_to_id"
+  add_index "defects", ["project_id"], name: "index_defects_on_project_id"
+  add_index "defects", ["raised_by_id"], name: "index_defects_on_raised_by_id"
+  add_index "defects", ["to_group_id"], name: "index_defects_on_to_group_id"
 
   create_table "group_members", id: false, force: :cascade do |t|
     t.integer  "group_id"

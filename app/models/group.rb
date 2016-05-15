@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
   belongs_to :project
   has_many :group_members
   has_many :members, through: :group_members
+  has_many :defects, foreign_key: "to_group_id"
 
   before_validation :default_values
 

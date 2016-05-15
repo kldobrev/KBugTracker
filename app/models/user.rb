@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :made_requests, class_name: "Request", foreign_key: "from_usr_id"
   has_many :received_requests, class_name: "Request", foreign_key: "to_usr_id"
   has_many :members
+  has_many :raised_defs, class_name: "Defect", foreign_key: "raised_by_id"
+  has_many :assigned_defs, class_name: "Defect", foreign_key: "assigned_to_id"
 
   def is_public?
     self.acctype == 0

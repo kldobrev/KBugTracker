@@ -1,0 +1,13 @@
+<h1>Defects assigned to <%= link_to current_user.username, user_path(current_user), class: "link_def_style" %>:</h1>
+
+<% if @defects.size == 0 %>
+  <h2>There aren't any defects currently assigned to you.</h2>
+<% else %>
+  <ul>
+    <% @defects.each do |df| %>
+      <li>
+        <%= link_to "##{df.id}, Project: #{df.project.title}: #{df.title}", project_defect_path(df.project, df), class: "link_def_style proj_rsrc_link" %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="side_layout">
+  <div class="left_side">
+    <h1>#<%= @defect.id %></h1>
+    <h2><%= @defect.title %></h2>
+
+    <p>
+      <span class="bold">Raised by:</span>
+      <%= link_to @defect.raised_by.username, user_path(@defect.raised_by), class: "link_def_style" %> <br>
+      <span class="bold">Assigned to:</span>
+      <% if @defect.assigned_to.present? %>
+        <%= link_to @defect.assigned_to.username, user_path(@defect.assigned_to), class: "link_def_style" %>
+      <% else %>
+        <%= link_to "#{@defect.to_group.name} group", group_path(@defect.project, @defect.to_group), class: "link_def_style" %> 
+      <% end %>
+           <br>
+      <span class="bold">Status:</span> <%= @defect.get_literal_status %> <br>
+      <span class="bold">Importance:</span>
+      <%= @defect.get_literal_importance %> <br>
+      <span class="bold">Description:</span> <br>
+      <%= @defect.description %>
+    </p> <br>
+
+    <% if @defect.is_assigned_user?(current_user) || @defect.is_def_creator?(current_user) || @project.is_proj_admin?(current_user) %>
+      <%= link_to "Edit defect", edit_project_defect_path(@project, @defect), class: "app_button edit_button" %>
+      <% if @project.is_proj_admin?(current_user) || (not @defect.is_assigned_user?(current_user)) %>
+        <%= link_to "Delete defect", project_defect_path(@project, @defect), method: "delete", class: "app_button delete_button" %>
+      <% end %>
+    <% end %>
+
+    <div id="defect_references">
+      <%= link_to "#{@defect.project.title}", project_path(@defect.project), class: "link_def_style proj_rsrc_link" %>
+      <%= link_to "#{@defect.project.title} defects", project_defects_path(@defect.project), class: "link_def_style proj_rsrc_link" %>
+    </div>
+  </div>
+
+  <div class="right_side">
+    <h2>Comments:</h2>
+  </div>
+</div>

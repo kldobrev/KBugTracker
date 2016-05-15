@@ -1,0 +1,13 @@
+<h1><%= link_to @project.title, project_path(@project), class: "link_def_style" %> defects:</h1>
+
+<% if @defects.size == 0 %>
+  <p>Hooray! No defects for this project yet!</p>
+<% else %>
+  <ul>
+    <% @defects.each do |df| %>
+      <li>
+      <%= link_to "##{df.id}: #{df.title}", project_defect_path(@project, df), class: "link_def_style proj_rsrc_link"  %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

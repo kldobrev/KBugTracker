@@ -8,6 +8,10 @@
       <span class="bold">Type:</span> <%= @project.is_public? ? "Public" : "Private" %>
     </p>
 
+    <% if @project.prtype == current_user.acctype %>
+      <%= link_to "Raise a defect", new_project_defect_path(@project), class: "app_button create_button" %>
+    <% end %>
+
     <h2>Tags:</h2>
     <% if @project.tags.count == 0 %>
       <p>No tags for this project yet. Edit it to add some.</p>
@@ -20,8 +24,10 @@
     <% end %>
 
     <% if @project.is_proj_owner?(current_user) || @project.is_proj_admin?(current_user) %>
-      <%= link_to "Project requests", proj_requests_path(@project), id: "proj_requests_link", class: "link_def_style" %>
-    <% end %> <br>
+      <%= link_to "Project requests", proj_requests_path(@project), class: "link_def_style proj_rsrc_link" %>
+    <% end %>
+
+    <%= link_to "Project defects", project_defects_path(@project), class: "link_def_style proj_rsrc_link" %> <br>
 
     <% if @project.is_proj_owner?(current_user) %>
       <%= link_to "Edit project", edit_project_path(@project), class: "app_button edit_button" %>

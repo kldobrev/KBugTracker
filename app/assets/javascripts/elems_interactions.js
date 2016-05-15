@@ -40,5 +40,17 @@ $(document).ready(function() {
     $("#add_gr_member_form").load("/all_proj_members/" + $("#add_gr_member_button").data("gr")).css({"display": "block"});
   });
 
+  $("#asgn_type_usr").click(function() {
+    $("#defect_assigned_to_id").css({"display": "block"});
+    $("#defect_to_group_id").css({"display": "none"});
+    $("#defect_to_group_id").val("");
+  });
+
+  $("#asgn_type_gr").click(function() {
+    $("#defect_assigned_to_id").css({"display": "none"});
+    $("#defect_assigned_to_id").val("");
+    $("#defect_to_group_id").css({"display": "block"});
+  });
+
 });
 

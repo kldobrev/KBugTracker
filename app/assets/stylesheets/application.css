@@ -133,6 +133,13 @@ ul > li {
   border-radius: 3px 3px 3px 3px;
 }
 
+.app_form select {
+  height: 22px;
+  min-width: 150px;
+  font-size: 14px;
+  border-radius: 3px 3px 3px 3px;
+}
+
 .app_form  input[type="text"]:focus {
   background-color: #FFFF7D;
 }
@@ -417,8 +424,21 @@ ul > li {
   color: #80aaff;
 }
 
-#proj_requests_link {
+.proj_rsrc_link {
   font-size: 20px;
   display: block;
+  margin-top: 4px;
+}
+
+#defect_assigned_to_id {
+  display: block;
+}
+
+#defect_to_group_id {
+  display: none;
+}
+
+#defect_references {
+  margin-top: 24px;
 }
 
