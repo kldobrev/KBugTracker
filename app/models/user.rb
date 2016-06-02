@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :members
   has_many :raised_defs, class_name: "Defect", foreign_key: "raised_by_id"
   has_many :assigned_defs, class_name: "Defect", foreign_key: "assigned_to_id"
+  has_many :comments
 
   def is_public?
     self.acctype == 0

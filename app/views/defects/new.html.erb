@@ -4,12 +4,16 @@
   <%= frm.label "Title:" %> <br>
   <%= frm.text_field :title %> <br>
   <%= frm.label "Assign to:" %>
-  <%= frm.label "User" %>
-  <%= radio_button_tag :asgn_type, "usr", checked: true %>
-  <%= frm.label "Group" %>
-  <%= radio_button_tag :asgn_type, "gr" %> <br>
+  <% if current_user.is_private? %>
+    <%= frm.label "User" %>
+    <%= radio_button_tag :asgn_type, "usr", checked: true %>
+    <%= frm.label "Group" %>
+    <%= radio_button_tag :asgn_type, "gr" %> <br>
+  <% end %>
   <%= frm.select :assigned_to_id, @project.members.map {|mem| [mem.user.username, mem.user.id]}, include_blank: "" %>
-  <%= frm.select :to_group_id, @project.groups.map {|gr| [gr.name, gr.id]}, include_blank: "" %> <br>
+  <% if current_user.is_private? %>
+    <%= frm.select :to_group_id, @project.groups.map {|gr| [gr.name, gr.id]}, include_blank: "" %>
+  <% end %> <br>
   <%= frm.label "Status:" %> <br>
   <%= frm.select :status, [["Opened", "0"], ["Maintenance", "1"]], include_blank: "" %> <br>
   <%= frm.label "Importance:" %> <br>

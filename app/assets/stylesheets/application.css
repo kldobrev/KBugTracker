@@ -442,3 +442,34 @@ ul > li {
   margin-top: 24px;
 }
 
+#all_comments ul {
+  width: 500px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+#all_comments li {
+  border: 1px solid #8c8c8c;
+  border-radius: 4px 4px 4px 4px;
+  margin: 9px 0px 9px 0px;
+  padding: 4px 4px 4px 4px;
+  background-color: #FFFFFF;
+}
+
+#all_comments div {
+  margin: 8px 0px 3px 0px;
+}
+
+#all_comments p {
+  margin: 0px;
+  word-wrap: break-word;
+}
+
+.comment_ts {
+  font-size: 12px;
+}
+
+.defect_description > p {
+  margin: 0px;
+}
+

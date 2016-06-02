@@ -1,0 +1,25 @@
+<% if @comments.size == 0 %>
+  <p>There are no comments for this defect yet.</p>
+<% else %>
+  <ul>
+    <% @comments.each do |cmnt| %>
+      <li>
+        <span class="bold">
+          <% if current_user == cmnt.user %>
+            <%= cmnt.user.username %>:
+          <% else %>
+            <%= link_to cmnt.user.username + ':', user_path(cmnt.user), class: "link_def_style" %>
+          <% end %>
+        </span>
+        <span class="comment_ts"><%= cmnt.updated_at %></span> <br>
+        <%= simple_format(cmnt.content) %>
+        <% if @comments.last == cmnt && (cmnt.user == current_user || cmnt.defect.project.is_proj_admin?(current_user)) %>
+          <div>
+            <%= link_to "Edit comment", "#", id: "edit_comment_button", data: {cmnt: cmnt.id}, class: "app_button_smaller edit_button" %>
+            <%= link_to "Delete comment", comment_path(cmnt), method: "delete", class: "app_button_smaller delete_button" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -75,7 +75,9 @@ Rails.application.routes.draw do
   resources :users
   resources :projects
   resources :projects do
-    resources :defects
+    resources :defects do
+      resources :comments, shallow: true
+    end
   end
 
   # statics

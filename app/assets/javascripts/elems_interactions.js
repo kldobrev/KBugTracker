@@ -52,5 +52,16 @@ $(document).ready(function() {
     $("#defect_to_group_id").css({"display": "block"});
   });
 
+  $("#all_comments").load("/projects/" + $("#def_comment_section").data("pr") + "/defects/" + $("#def_comment_section").data("df") + "/comments");
+  $("#new_comment").load("/projects/" + $("#def_comment_section").data("pr") + "/defects/" + $("#def_comment_section").data("df") + "/comments/new" );
+
 });
+
+$(document).ajaxComplete(function() {
+
+  $("#edit_comment_button").click(function() {
+    $("#new_comment").load("/comments/" + $("#edit_comment_button").data("cmnt") + "/edit");
+  });
+
+}); 
 

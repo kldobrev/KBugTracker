@@ -3,7 +3,7 @@
     <h1>#<%= @defect.id %></h1>
     <h2><%= @defect.title %></h2>
 
-    <p>
+    <div>
       <span class="bold">Raised by:</span>
       <%= link_to @defect.raised_by.username, user_path(@defect.raised_by), class: "link_def_style" %> <br>
       <span class="bold">Assigned to:</span>
@@ -17,8 +17,8 @@
       <span class="bold">Importance:</span>
       <%= @defect.get_literal_importance %> <br>
       <span class="bold">Description:</span> <br>
-      <%= @defect.description %>
-    </p> <br>
+      <span class="defect_description"><%= simple_format(@defect.description) %></span>
+    </div> <br>
 
     <% if @defect.is_assigned_user?(current_user) || @defect.is_def_creator?(current_user) || @project.is_proj_admin?(current_user) %>
       <%= link_to "Edit defect", edit_project_defect_path(@project, @defect), class: "app_button edit_button" %>
@@ -35,5 +35,6 @@
 
   <div class="right_side">
     <h2>Comments:</h2>
+    <%= content_tag :div, content_tag(:div, "", id: "all_comments") + content_tag(:div, "", id: "new_comment"), id: "def_comment_section", data: {pr: @project.id, df: @defect.id} %>
   </div>
 </div>

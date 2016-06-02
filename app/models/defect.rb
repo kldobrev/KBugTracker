@@ -9,6 +9,7 @@ class Defect < ActiveRecord::Base
   belongs_to :raised_by, class_name: "User"
   belongs_to :assigned_to, class_name: "User"
   belongs_to :to_group, class_name: "Group"
+  has_many :comments
 
   def get_literal_status
     case(self.status)
