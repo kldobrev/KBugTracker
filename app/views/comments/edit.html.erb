@@ -1,4 +1,4 @@
-<%= form_for(@comment, html: {class: "app_form"}) do |frm| %>
+<%= form_for(@comment, html: {class: "app_form", onsubmit: "return validate_comment();"}) do |frm| %>
   <%= frm.text_area :content %> <br>
   <%= frm.submit "Save changes", class: "app_button_smaller edit_button" %>
 <% end %>

@@ -100,10 +100,14 @@ ul > li {
   color: #000000;
 }
 
-#flashes {
+#flashes_on {
   margin: 0px;
   padding: 5px 0px 5px 0px;
   text-align: center;
+}
+
+#flashes_off {
+  display: none;
 }
 
 #flashes li {

@@ -1,6 +1,6 @@
 <h1>Raise defect:</h1>
 
-<%= form_for([@project, @defect], html: {class: "app_form"}) do |frm| %>
+<%= form_for([@project, @defect], html: {class: "app_form", onsubmit: "return validate_defect();"}) do |frm| %>
   <%= frm.label "Title:" %> <br>
   <%= frm.text_field :title %> <br>
   <%= frm.label "Assign to:" %>

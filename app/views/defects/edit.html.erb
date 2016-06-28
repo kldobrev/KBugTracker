@@ -1,6 +1,6 @@
 <h1>Edit defect:</h1>
 
-<%= form_for([@project, @defect], html: {class: "app_form"}) do |frm| %>
+<%= form_for([@project, @defect], html: {class: "app_form", onsubmit: "return validate_defect();"}) do |frm| %>
   <%= frm.label "Reassign to:" %>
   <% if current_user.is_private? %>
     <%= frm.label "User" %>

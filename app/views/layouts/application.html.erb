@@ -63,13 +63,13 @@
     Display flash messages for successful or failed actions
     and validation results.
   -->
-  <% unless flash[:status] == nil %>
-    <ul id="flashes" class=<%= flash[:status] == 0 ? "fl_success" : "fl_err" %> >
-      <% flash[:msgs].each do |m| %>
-        <li><%= m %></li>
+  <ul id=<%= flash[:status] ? "flashes_on" : "flashes_off" %> class=<%= (flash[:status] && flash[:status] == 0) ? "fl_success" : "fl_err" %> >
+      <% if flash[:status] %>
+        <% flash[:msgs].each do |m| %>
+          <li><%= m %></li>
+        <% end %>
       <% end %>
     </ul>
-  <% end %>
 		
   <div id="body_cont" data-no-turbolink>
     <%= yield %>

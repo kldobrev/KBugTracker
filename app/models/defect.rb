@@ -54,7 +54,9 @@ class Defect < ActiveRecord::Base
   private
 
   def is_assigned_to_user_or_group?
-    self.assigned_to_id.present? or self.to_group_id.present?
+    unless self.assigned_to_id.present? or self.to_group_id.present?
+      errors.add(:defect, "must be assigned to a user or an existing project group.")
+    end
   end
 
 end

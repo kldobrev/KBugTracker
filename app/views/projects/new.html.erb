@@ -1,6 +1,6 @@
 <h1>New project</h1>
 
-<%= form_for(@project, html: { class: "app_form" }) do |prf| %>
+<%= form_for(@project, html: { class: "app_form", onsubmit: "return validate_project();" }) do |prf| %>
   <%= prf.label "Title:" %> <br>
   <%= prf.text_field :title %> <br>
   <%= prf.label "Description:" %> <br>

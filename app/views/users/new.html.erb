@@ -1,6 +1,6 @@
 <h1>Sign up</h1>
 
-<%= form_for(@user, html: { class: "app_form" }) do |uf| %>
+<%= form_for(@user, html: { class: "app_form", onsubmit: "return validate_user();" }) do |uf| %>
   <%= uf.label "Username:" %> <br>
   <%= uf.text_field :username %> <br>
   <%= uf.label "Email:" %> <br>

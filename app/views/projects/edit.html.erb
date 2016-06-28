@@ -1,4 +1,4 @@
-<%= form_for(@project, html: {class: "app_form"}) do |frm| %>
+<%= form_for(@project, html: {class: "app_form", onsubmit: "return validate_project();"}) do |frm| %>
 
   <div class="side_layout">
     <div class="left_side">
